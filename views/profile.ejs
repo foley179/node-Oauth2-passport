@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title><%= user.username %>'s profile</title>
+        <!--file copied from git repo, basic css added-->
+        <style>
+            body{
+                font-family: arial;
+                margin: 0;
+            }
+            nav{
+                background: #ff5353;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+            }
+            nav a{
+                color: #fff;
+                font-size: 18px;
+                background: rgba(255,255,255,0.2);
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <!--"/" links to a route, created in app.js-->
+                <li><a href="/">Homepage</a></li>
+                <!--ejs can handle logic, looks complex at first but its simple spaced out like JS for easy reading-->
+                <% if(user) { %> 
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/auth/logout">Logout</a></li>
+                <% } else { %> 
+                    <li><a href="/auth/login">Login</a></li>
+                <% } %>
+        </nav>
+        <header>
+            <!--in ejs you can output data and do JS logic by putting it inbetween <\% %> or <\%= %> to render (ignoring \ ) eg below-->
+            <h1>welcome to your homepage <%= user.username %> </h1>
+        </header>
+        <main>
+            <img src=" <%= user.thumbnail %> ">
+            <p>
+                extra info about you.
+            </p>
+        </main>
+    </body>
+</html>
